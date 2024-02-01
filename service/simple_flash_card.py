@@ -1,11 +1,17 @@
 from tkinter import *
+import os.path
 
 from .config import *
 from .canvas import CardCanvas
 from .button import CardButton
 from .data import WordData
 
-word_data = WordData(file_path=DATA_FILE_PATH)
+if not os.path.isfile(LEARNED_WORDS_FILE_PATH):
+    from shutil import copyfile
+
+    copyfile(DATA_FILE_PATH, LEARNED_WORDS_FILE_PATH)
+
+word_data = WordData(file_path=LEARNED_WORDS_FILE_PATH)
 
 current_word = {
     "French": "",

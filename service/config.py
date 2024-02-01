@@ -25,3 +25,4 @@ TITLE_FONT = ("Ariel", 40, "italic")
 WORD_FONT = ("Ariel", 60, "bold")
 
 DATA_FILE_PATH = "data/french_words.csv"
+LEARNED_WORDS_FILE_PATH = "data/learned_words.csv"
