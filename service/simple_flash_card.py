@@ -14,7 +14,10 @@ current_word = {
 
 
 def next_word():
-    global current_word, window
+    global current_word
+    global window, flip_timer
+    window.after_cancel(flip_timer)
+
     current_word = word_data.get_random_word()
     card_canvas.flip_card(image=canvas_front_image)
     card_canvas.change_word(
@@ -23,7 +26,7 @@ def next_word():
         title_color=CARD_FRONT_TITLE_COLOR,
         word_color=CARD_FRONT_WORD_COLOR
     )
-    window.after(3000, func=flip_card)
+    flip_timer = window.after(3000, func=flip_card)
 
 
 def flip_card():
@@ -40,7 +43,7 @@ def flip_card():
 window = Tk()
 window.title("Flashcard App")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
-window.after(3000, func=flip_card)
+flip_timer = window.after(3000, func=flip_card)
 
 canvas_front_image = PhotoImage(file=FRONT_IMAGE)
 canvas_back_image = PhotoImage(file=BACK_IMAGE)
